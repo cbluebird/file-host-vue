@@ -53,12 +53,12 @@ export default {
                 if (!valid) return;
                 const {data: res} = await this.axios.post("/api/user/login", this.loginForm);
                 console.log(res)
-                if (res.code != 200) return this.$message({
+                if (res.code !== 200) return this.$message({
                     showClose: true,
                     message: '登录失败',
                     type: 'error'
                 });
-                router.push("/home")
+                await router.push("/home")
                 this.$message.success('登录成功');
                 window.sessionStorage.setItem("userName", res.data.username)
             });
@@ -79,8 +79,8 @@ export default {
 }
 
 body {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 .login-container {
