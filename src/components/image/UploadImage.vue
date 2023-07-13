@@ -1,90 +1,39 @@
-<!--<template>-->
-<!--    <el-form :model="form" label-width="120px">-->
-<!--        <el-form-item label="上传照片">-->
-<!--            <template>-->
-<!--                <el-upload-->
-<!--                    v-model:file-list="fileList"-->
-<!--                    class="uploadImage"-->
-<!--                    action="none"-->
-<!--                    :on-preview="handlePreview"-->
-<!--                    :on-remove="handleRemove"-->
-<!--                    :on-change="checkType"-->
-<!--                    :auto-upload="false"-->
-<!--                    ref="upload"-->
-<!--                >-->
-<!--&lt;!&ndash;                    <el-button type="primary">Click to upload</el-button>&ndash;&gt;-->
-<!--                    <el-button class="btn"><i class="el-icon-paperclip"></i>上传附件</el-button>-->
-<!--                </el-upload>-->
-<!--            </template>-->
-<!--            <template>-->
-<!--                <el-image style="width: 100px; height: 100px" :src="imageUrl" :fit="'fill'" />-->
-<!--            </template>-->
-<!--&lt;!&ndash;            <el-input v-model="form.name" />&ndash;&gt;-->
-<!--        </el-form-item>-->
-
-<!--        <el-form-item label="描述">-->
-<!--            <el-input v-model="form.desc" type="textarea" />-->
-<!--        </el-form-item>-->
-<!--        <el-form-item>-->
-<!--            <el-button type="primary" @click="onSubmit">上传</el-button>-->
-<!--        </el-form-item>-->
-<!--    </el-form>-->
-<!--</template>-->
-
-<!--<script >-->
-<!--export default {-->
-<!--    data(){-->
-<!--        return{-->
-<!--            imageUrl:"",-->
-<!--            form : {-->
-<!--                ImageFIle: null,-->
-<!--                desc: '',-->
-<!--            },-->
-<!--            fileList:[],-->
-<!--            handleRemove : (uploadFile, uploadFiles) => {-->
-<!--                console.log(uploadFile, uploadFiles)-->
-<!--            },-->
-<!--            handlePreview : (file) => {-->
-<!--                console.log(file)-->
-<!--            },-->
-<!--            checkType:(file,fileList)=>{-->
-<!--                // eslint-disable-next-line no-unused-vars-->
-<!--                fileList=[];-->
-<!--                this.form.ImageFIle=file-->
-<!--                this.imageUrl=URL.createObjectURL(file.raw)-->
-<!--            }-->
-<!--        }-->
-<!--    },-->
-<!--    methods:{-->
-<!--        onSubmit(){-->
-<!--            console.log('submit!')-->
-<!--        }-->
-<!--    }-->
-<!--}-->
-<!--</script>-->
-
 <template>
+    <el-scrollbar max-height="400px">
     <el-upload
-            ref="upload"
-            :auto-upload="false"
-            :file-list="fileList"
-            :headers="headers"
-            :limit="5"
-            :on-change="handleChange"
-            :on-exceed="limitCheck"
-            :on-remove="removeFile"
-            accept=".png,.jpg,.jpeg,.doc,.docx,.txt,.xls,.xlsx"
-            action="#"
-            list-type="picture-card"
-            multiple
+        ref="upload"
+        accept=".png,.jpg,.jpeg,.doc,.docx,.txt,.xls,.xlsx"
+        action="#"
+        multiple
+        :limit="5"
+        :headers="headers"
+        :auto-upload="false"
+        :file-list="fileList"
+        :on-change="handleChange"
+        :on-preview="handlePictureCardPreview"
+        :on-remove="removeFile"
+        :on-exceed="limitCheck"
+        list-type="picture-card"
     >
-        <el-button size="small" type="primary">点击上传图片</el-button>
+
+        <el-button  type="primary">点击上传图片</el-button>
     </el-upload>
 
+    <el-dialog v-model="dialogVisible">
+        <img w-full :src="dialogImageUrl" alt="Preview Image" />
+    </el-dialog>
+    <p></p>
+    <el-button type="primary" @click="confirm">
+        上传到服务器<el-icon class="el-icon--right"><Upload /></el-icon>
+    </el-button>
+    </el-scrollbar>
 </template>
 
 <script>
+import {Upload} from "@element-plus/icons-vue";
+
 export default {
+    components: {Upload},
     data() {
         return {
             // 上传附件
@@ -92,9 +41,12 @@ export default {
             headers: {
                 'Content-Type': 'multipart/form-data'
             },
+            dialogImageUrl : '',
+            dialogVisible : false
         }
     },
     methods: {
+
         // 文件状态改变时的钩子
         handleChange(file, fileList) { // 文件数量改变
             this.fileList = fileList
@@ -134,8 +86,11 @@ export default {
                     this.$message.error('上传失败')
                 }
             })
+        },
+        handlePictureCardPreview(uploadFile) {
+            this.dialogImageUrl.value = uploadFile.url
+            this.dialogVisible.value = true
         }
     }
-
 }
 </script>

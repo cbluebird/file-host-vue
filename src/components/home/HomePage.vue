@@ -10,7 +10,7 @@
         <el-container>
             <!--左侧侧边栏-->
             <el-aside width="100px">
-                <el-menu active-text-color="#409EFF" background-color="#545c64" router text-color="#fff">
+                <el-menu background-color="#545c64" text-color="#fff" active-text-color="#409EFF" router>
                     <el-menu-item index="modify">
                         <i class="el-icon-setting"></i>
                         <slot name="title">修改密码</slot>
@@ -42,14 +42,14 @@
 
 <script>
 
-import router from "@/tools/router";
+import router from "@/tools/Router"
 
 export default {
 //created(){
     //this.getMenuList()
 //},
-    methods: {
-        logout() {
+    methods:{
+        logout(){
             router.push('/login')
             //清除session
             window.sessionStorage.clear()
@@ -60,26 +60,24 @@ export default {
 </script>
 
 <style scoped>
-.main-container {
-    height: 100vh;
+.main-container{
+    height:100vh;
     /*vh为相对与视窗的高度，视窗被分为100单位的vh，同理还有相对于视窗的宽度vw，height：100%当元素没有内容的时候不会被撑开*/
 }
 
-.el-header {
+.el-header{
     background-color: #373d41;
-    display: flex; /*flex弹性布局，一般用于垂直居中布局 */
-    justify-content: space-between; /*justify-content是水平布局，详见css3中justify-content属性的教程 */
-    align-items: center; /*与justify-content相对应，为垂直布局 */
-    color: #fff;
-    font-size: 30px;
+    display:flex;/*flex弹性布局，一般用于垂直居中布局 */
+    justify-content:space-between;/*justify-content是水平布局，详见css3中justify-content属性的教程 */
+    align-items:center;/*与justify-content相对应，为垂直布局 */
+    color:#fff;
+    font-size:30px;
 }
-
-.el-aside {
-    background-color: #333744;
+.el-aside{
+    background-color:#333744;
 }
-
-.el-main {
-    background-color: #eaedf1;
+.el-main{
+    background-color:#eaedf1;
 }
 
 
