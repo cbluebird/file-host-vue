@@ -9,10 +9,8 @@ import axios from "axios";
 import VueAxios from "vue-axios";
 import router from "./tools/Router";
 
-// axios.defaults.baseURL="http://127.0.0.1:4523/m1/2931284-0-default"
 axios.defaults.withCredentials=false
-// axios.defaults.baseURL="http://127.0.0.1:8088"
-axios.defaults.baseURL=import.meta.env.VUE_APP_HOST
+axios.defaults.baseURL=import.meta.env.VITE_APP_HOST
 const app = createApp(App)
 
 app.use(createPinia())
