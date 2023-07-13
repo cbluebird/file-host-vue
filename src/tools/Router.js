@@ -3,6 +3,7 @@ import LoginHome from "@/components/login/LoginHome.vue";
 import HomePage from "@/components/home/HomePage.vue";
 import ImageTable from "@/components/image/ImageTable.vue";
 import UploadImage from "@/components/image/UploadImage.vue";
+import FileTable from "@/components/file/FileTable.vue";
 
 const routes = [
     {
@@ -20,6 +21,14 @@ const routes = [
             {
                 path:'/upload_image',
                 component:UploadImage
+            },
+            {
+                path: '/file',
+                component: FileTable
+            },
+            {
+                path: '/file_upload',
+                component: UploadImage
             }
         ]
     }

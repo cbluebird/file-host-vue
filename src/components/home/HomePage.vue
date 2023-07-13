@@ -11,10 +11,6 @@
             <!--左侧侧边栏-->
             <el-aside width="100px">
                 <el-menu background-color="#545c64" text-color="#fff" active-text-color="#409EFF" router>
-                    <el-menu-item index="modify">
-                        <i class="el-icon-setting"></i>
-                        <slot name="title">修改密码</slot>
-                    </el-menu-item>
                     <el-menu-item index="image">
                         <i class="el-icon-s-comment"></i>
                         <slot name="title">图片管理</slot>
@@ -23,9 +19,13 @@
                         <i class="el-icon-s-comment"></i>
                         <slot name="title">上传图片</slot>
                     </el-menu-item>
-                    <el-menu-item index="research">
+                    <el-menu-item index="file">
                         <i class="el-icon-zoom-in"></i>
                         <slot name="title">文件管理</slot>
+                    </el-menu-item>
+                    <el-menu-item index="file_upload">
+                        <i class="el-icon-zoom-in"></i>
+                        <slot name="title">上传文件</slot>
                     </el-menu-item>
                 </el-menu>
             </el-aside>
