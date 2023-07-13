@@ -13,6 +13,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
     "axios": "^1.4.0",
+    "dotenv": "^16.3.1",
     "element-plus": "^2.3.7",
     "file-saver": "^2.0.5",
     "lib-flexible": "^0.3.2",
