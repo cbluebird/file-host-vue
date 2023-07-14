@@ -56,7 +56,7 @@ export default {
                     message: '登录失败',
                     type: 'error'
                 });
-                router.push("/home")
+                await router.push("/home")
                 this.$message.success('登录成功');
                 window.sessionStorage.setItem("userName",res.data.username)
             });
@@ -66,6 +66,7 @@ export default {
 </script>
 
 <style scoped>
+
 
 .box {
     max-height: 200px;

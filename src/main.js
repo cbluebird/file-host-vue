@@ -9,7 +9,7 @@ import axios from "axios";
 import VueAxios from "vue-axios";
 import router from "./tools/Router";
 
-axios.defaults.withCredentials=false
+axios.defaults.withCredentials=true
 axios.defaults.baseURL=import.meta.env.VITE_APP_HOST
 const app = createApp(App)
 
