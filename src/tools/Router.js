@@ -4,6 +4,7 @@ import HomePage from "@/components/home/HomePage.vue";
 import ImageTable from "@/components/image/ImageTable.vue";
 import UploadImage from "@/components/image/UploadImage.vue";
 import FileTable from "@/components/file/FileTable.vue";
+import UploadFile from "@/components/file/UploadFile.vue";
 
 const routes = [
     {
@@ -28,7 +29,7 @@ const routes = [
             },
             {
                 path: '/file_upload',
-                component: UploadImage
+                component: UploadFile
             }
         ]
     }
